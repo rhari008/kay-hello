@@ -23,12 +23,6 @@
         <sap.cloud.sdk.version>1.144.13.1</sap.cloud.sdk.version>
         <sap.cloud.sdk.plugin>neo-java-web-maven-plugin</sap.cloud.sdk.plugin>
 
-        <sap.cloud.api>${env.CF_API}</sap.cloud.api>
-        <sap.cloud.org>${env.CF_ORGANIZATION}</sap.cloud.org>
-        <sap.cloud.space>${env.CF_SPACE}</sap.cloud.space>
-        <sap.cloud.username>${env.CF_USERNAME}</sap.cloud.username>
-        <sap.cloud.password>${env.CF_PASSWORD}</sap.cloud.password>
-
         <!-- Property that holds the supported JDK version for the given SAP Cloud Platform SDK for Neo environment -->
         <sap.cloud.jdk.version>1.7</sap.cloud.jdk.version>
 
@@ -43,6 +37,12 @@
         <!-- Property that holds the data center host is pre-defined below, but may be overwritten if required, e.g.: -->
         <!-- mvn clean verify -P cloud-integration-tests ... -Dsap.cloud.host=hanatrial.ondemand.com -->
         <sap.cloud.host>hana.ondemand.com</sap.cloud.host>
+
+        <sap.cloud.api>${env.CF_API}</sap.cloud.api>
+        <sap.cloud.org>${env.CF_ORGANIZATION}</sap.cloud.org>
+        <sap.cloud.space>${env.CF_SPACE}</sap.cloud.space>
+        <sap.cloud.username>${env.CF_USERNAME}</sap.cloud.username>
+        <sap.cloud.password>${env.CF_PASSWORD}</sap.cloud.password>
 
         <!-- Property that holds the name of the application under which it will later appear in the cloud -->
         <sap.cloud.application>sample</sap.cloud.application>
@@ -162,14 +162,10 @@
             <!-- Map the Eclipse file system layout to the Maven plug-ins -->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1</version>
-                <configuration>
-                    <warName>${project.artifactId}</warName>
-                    <warSourceDirectory>WebContent</warSourceDirectory>
+                <version>3.0.0</version>
+                    <configuration>
+                        <warSourceDirectory>WebContent</warSourceDirectory>
                     <outputDirectory>/tmp</outputDirectory>
-                    <archive>
-                        <manifestFile>WebContent/META-INF/MANIFEST.MF</manifestFile>
-                    </archive>
                 </configuration>
             </plugin>
 
@@ -335,27 +331,27 @@
                 <finalName>application</finalName>
                 <plugins>
                     <plugin>
-                        <groupId>org.cloudfoundry</groupId>
-                        <artifactId>cf-maven-plugin</artifactId>
-                        <version>1.0.4</version>
-                        <configuration>
-                            <target>${sap.cloud.api}</target>
-                            <username>${sap.cloud.username}</username>
-                            <password>${sap.cloud.password}</password>
-                            <space>${sap.cloud.space}</space>
-                            <org>${sap.cloud.org}</org>
-                            <appname>waynify</appname>
-                        </configuration>
-                        <executions>					
-                            <execution>
-                            <id>deploying-application</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>push</goal>
-                            </goals>
-                            </execution>
-                        </executions>  		 			  
-                    </plugin>
+                    <groupId>org.cloudfoundry</groupId>
+                    <artifactId>cf-maven-plugin</artifactId>
+                    <version>1.0.4</version>
+                    <configuration>
+                        <target>${sap.cloud.api}</target>
+                        <username>${sap.cloud.username}</username>
+                        <password>${sap.cloud.password}</password>
+                        <space>${sap.cloud.space}</space>
+                        <org>${sap.cloud.org}</org>
+                        <appname>waynify</appname>
+                    </configuration>
+                    <executions>					
+                        <execution>
+                        <id>deploying-application</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                        </execution>
+                    </executions>  		 			  
+                    </plugin>  		 			
                     <plugin>
                         <artifactId>maven-enforcer-plugin</artifactId>
                         <version>1.0.1</version>
