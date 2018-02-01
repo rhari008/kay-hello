@@ -344,7 +344,7 @@
                             <password>${sap.cloud.password}</password>
                             <space>${sap.cloud.space}</space>
                             <org>${sap.cloud.org}</org>
-                            <appname>waynify</appname>
+                            <appname>hello-kay</appname>
                         </configuration>
                         <executions>					
                             <execution>
