@@ -23,12 +23,6 @@
         <sap.cloud.sdk.version>1.144.13.1</sap.cloud.sdk.version>
         <sap.cloud.sdk.plugin>neo-java-web-maven-plugin</sap.cloud.sdk.plugin>
 
-        <sap.cloud.api>${env.CF_API}</sap.cloud.api>
-        <sap.cloud.org>${env.CF_ORGANIZATION}</sap.cloud.org>
-        <sap.cloud.space>${env.CF_SPACE}</sap.cloud.space>
-        <sap.cloud.username>${env.CF_USERNAME}</sap.cloud.username>
-        <sap.cloud.password>${env.CF_PASSWORD}</sap.cloud.password>
-
         <!-- Property that holds the supported JDK version for the given SAP Cloud Platform SDK for Neo environment -->
         <sap.cloud.jdk.version>1.7</sap.cloud.jdk.version>
 
@@ -45,6 +39,12 @@
         <sap.cloud.host>hana.ondemand.com</sap.cloud.host>
 
         <!-- Property that holds the name of the application under which it will later appear in the cloud -->
+        <sap.cloud.api>${env.CF_API}</sap.cloud.api>
+        <sap.cloud.org>${env.CF_ORGANIZATION}</sap.cloud.org>
+        <sap.cloud.space>${env.CF_SPACE}</sap.cloud.space>
+        <sap.cloud.username>${env.CF_USERNAME}</sap.cloud.username>
+        <sap.cloud.password>${env.CF_PASSWORD}</sap.cloud.password>
+
         <sap.cloud.application>sample</sap.cloud.application>
 
         <!-- Properties that hold the local server configuration required for local integration-testing -->
@@ -166,7 +166,6 @@
                 <configuration>
                     <warName>${project.artifactId}</warName>
                     <warSourceDirectory>WebContent</warSourceDirectory>
-                    <outputDirectory>/tmp</outputDirectory>
                     <archive>
                         <manifestFile>WebContent/META-INF/MANIFEST.MF</manifestFile>
                     </archive>
@@ -332,31 +331,8 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <build>
-                <finalName>application</finalName>
                 <plugins>
-                    <plugin>
-                        <groupId>org.cloudfoundry</groupId>
-                        <artifactId>cf-maven-plugin</artifactId>
-                        <version>1.0.4</version>
-                        <configuration>
-                            <target>${sap.cloud.api}</target>
-                            <username>${sap.cloud.username}</username>
-                            <password>${sap.cloud.password}</password>
-                            <space>${sap.cloud.space}</space>
-                            <org>${sap.cloud.org}</org>
-                            <appname>hello-kay</appname>
-                        </configuration>
-                        <executions>					
-                            <execution>
-                            <id>deploying-application</id>
-                            <phase>package</phase>
-                            <goals>
-                                <goal>push</goal>
-                            </goals>
-                            </execution>
-                        </executions>  		 			  
-                    </plugin>
-                    <plugin>
+                    <!-- <plugin>
                         <artifactId>maven-enforcer-plugin</artifactId>
                         <version>1.0.1</version>
                         <executions>
@@ -389,8 +365,8 @@
                         <configuration>
                             <skip>${skipIntegrationTests}</skip>
                         </configuration>
-                    </plugin>
-                    <plugin>
+                    </plugin> -->
+                    <!-- <plugin>
                         <groupId>com.sap.cloud</groupId>
                         <artifactId>${sap.cloud.sdk.plugin}</artifactId>
                         <executions>
@@ -407,11 +383,11 @@
                                 <goals>
                                     <goal>deploy</goal>
                                 </goals>
-                            </execution>
+                            </execution> -->
                             <!-- This execution can be overridden in the sample pom.xml in order to execute additional steps 
                                 between deployment and start of the sample application. The additional execution must be specified with the neo-java-web-maven-plugin 
                                 and the same id "prepare-cloud-application" and phase "pre-integration-test" -->
-                            <execution>
+                            <!-- <execution>
                                 <id>prepare-cloud-application</id>
                                 <phase>pre-integration-test</phase>
                             </execution>
@@ -442,8 +418,8 @@
                             <synchronous>true</synchronous>
                             <javaVersion>7</javaVersion>
                         </configuration>
-                    </plugin>
-                    <plugin>
+                    </plugin> -->
+                    <!-- <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <executions>
                             <execution>
@@ -470,7 +446,7 @@
                         <configuration>
                             <skip>${skipIntegrationTests}</skip>
                         </configuration>
-                    </plugin>
+                    </plugin> -->
                 </plugins>
             </build>
         </profile>

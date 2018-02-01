@@ -20,4 +20,51 @@
             <url>https://tools.hana.ondemand.com/developer-license-3.1.txt</url>
         </license>
     </licenses>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <warSourceDirectory>WebContent</warSourceDirectory>
+                    <outputDirectory>/tmp</outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>cloud-integration-tests</id>
+            <build>
+            <finalName>application</finalName>
+            <plugins>
+                <plugin>
+                <groupId>org.cloudfoundry</groupId>
+                <artifactId>cf-maven-plugin</artifactId>
+                <version>1.0.4</version>
+                <configuration>
+                    <target>${sap.cloud.api}</target>
+                    <username>${sap.cloud.username}</username>
+                    <password>${sap.cloud.password}</password>
+                    <space>${sap.cloud.space}</space>
+                    <org>${sap.cloud.org}</org>
+                    <appname>waynify</appname>
+                </configuration>
+                <executions>					
+                    <execution>
+                    <id>deploying-application</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>push</goal>
+                    </goals>
+                    </execution>
+                </executions>  		 			  
+                </plugin>  		 			
+            </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
