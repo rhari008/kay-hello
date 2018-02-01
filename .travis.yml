@@ -7,7 +7,7 @@ notifications:
 env:
  global:
    - CXX=g++-4.8
-   - CF_APP=cf-hello-world-kay
+   - CF_APP=hellokay
    - CF_API=$SAP_CLOUD_API
    - CF_USERNAME=$SAP_CLOUD_USERNAME
    - CF_PASSWORD=$SAP_CLOUD_PASSWORD
