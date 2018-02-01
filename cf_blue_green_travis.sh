@@ -17,7 +17,7 @@ sudo apt-get install cf-cli
 
 # Login to Cloud Foundry
 cf api $CF_API #Use the cf api command to set the api endpoint
-cf login -u $CF_PROD_USERNAME -p $CF_PROD_PASSWORD -o $CF_ORGANIZATION -s $CF_PROD_SPACE
+cf login -u $CF_USERNAME -p $CF_PASSWORD -o $CF_ORGANIZATION -s $CF_SPACE
 
 # Get the script path to execute the script
 pushd `dirname $0` > /dev/null
