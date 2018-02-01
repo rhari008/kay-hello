@@ -71,10 +71,12 @@ trap on_fail ERR
 
 ls -d -1 /home/travis/build/rhari008/kay-hello/**/*
 
-DOMAIN=$CF_API
+DOMAIN=$CF_DOMAIN
 cf push -f $MANIFEST -p /tmp/$CF_APP.war
+echo $GREEN
+echo $DOMAIN
 GREENURL=https://${GREEN}.${DOMAIN}
-    
+echo $GREENURL    
 # Check the URL to find if it fails
 curl --fail -I -k $GREENURL
 
