@@ -72,7 +72,7 @@ trap on_fail ERR
 ls -d -1 /home/travis/build/rhari008/kay-hello/**/*
 
 DOMAIN=$CF_API
-cf push -f $MANIFEST
+cf push -f $MANIFEST -p /tmp/hello-world.war
 GREENURL=https://${GREEN}.${DOMAIN}
     
 # Check the URL to find if it fails
