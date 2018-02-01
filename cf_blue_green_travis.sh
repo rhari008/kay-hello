@@ -42,6 +42,9 @@ on_fail () {
   exit 1 
 }
 
+#Store the current path
+CURRENTPATH=$(pwd)
+
 # Set the application name in BLUE variable
 BLUE=$CF_APP 
 
@@ -65,6 +68,9 @@ sed -i -e "s?path: ?path: $CURRENTPATH/?g" $MANIFEST
 trap on_fail ERR
     
 # Prepare the URL of the green application
+
+ls -d -1 /home/travis/build/rhari008/kay-hello/**/*
+
 DOMAIN=$CF_API
 cf push -f $MANIFEST
 GREENURL=https://${GREEN}.${DOMAIN}

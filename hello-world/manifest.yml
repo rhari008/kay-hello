@@ -1,4 +1,4 @@
 ---
 applications:
-- name: waynify
+- name: hellokay
   memory: 128M
