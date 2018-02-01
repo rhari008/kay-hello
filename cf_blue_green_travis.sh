@@ -49,7 +49,7 @@ BLUE=$CF_APP
 GREEN="${BLUE}-B"
 
 # Pull the up-to-date manifest from the BLUE (existing) application
-MANIFEST=$(mktemp -t "${BLUE}_manifest.xxxxxx")
+MANIFEST=$(mktemp -t "${BLUE}_manifest.xxxxxxxxxxxx")
 
 # Create the new manifest file for deployment
 echo "Manifest file is: "
